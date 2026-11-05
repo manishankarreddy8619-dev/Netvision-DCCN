@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  # NetVision Streamlit Dashboard & Sniffer
+  dashboard:
+    build: .
+    container_name: netvision-dashboard
+    restart: unless-stopped
+    ports:
+      - "8501:8501"
+    environment:
+      - PYTHONPATH=/app
+    volumes:
+      - ./data:/app/data
+    command: ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+
+  # NetVision TCP Receiver Daemon (Laptop B Simulator)
+  receiver:
+    build: .
+    container_name: netvision-receiver
+    restart: unless-stopped
+    ports:
+      - "65432:65432"
+    environment:
+      - PYTHONPATH=/app
+    volumes:
+      - ./data/received_files:/app/data/received_files
+    command: ["python", "network/receiver.py", "--host", "0.0.0.0", "--port", "65432"]

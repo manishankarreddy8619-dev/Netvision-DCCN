@@ -1,0 +1,29 @@
+{
+  "network": {
+    "default_host": "0.0.0.0",
+    "default_port": 65432,
+    "connection_timeout_seconds": 15.0,
+    "max_file_size_bytes": 209715200,
+    "chunk_buffer_size_bytes": 65536,
+    "default_save_directory": "data/received_files"
+  },
+  "sniffer": {
+    "default_mode": "simulation",
+    "buffer_max_packets": 10000,
+    "default_bpf_filter": "",
+    "simulation_rate_pps": 15
+  },
+  "anomaly_detection": {
+    "time_window_seconds": 3.0,
+    "max_pps_threshold": 150,
+    "syn_burst_threshold": 25,
+    "port_scan_threshold": 8,
+    "spike_multiplier": 3.5
+  },
+  "security": {
+    "sanitize_filenames": true,
+    "enforce_sandbox_directory": true,
+    "strip_application_payloads": true,
+    "allow_unrestricted_promiscuous": false
+  }
+}
